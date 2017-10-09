@@ -1,1 +1,1 @@
-# parqchat
+# parq.chat
