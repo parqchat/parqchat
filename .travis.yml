@@ -1,0 +1,13 @@
+# Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t parqchat_test docker/travis
+
+script:
+  - docker run -v $PWD:/parqchat parqchat_test /bin/sh -c "cd /parqchat; bazel --batch test ..."
+  - tools/code_style/copyright_check.sh
