@@ -8,10 +8,11 @@ whitelist=$dir/whitelist
 workspace=`git rev-parse --show-toplevel`
 
 function ilog() {
-  echo $*
+  #echo $*
+  true
 }
 
-
+ilog "PWD: $PWD"
 [ -f $workspace/WORKSPACE ] || { echo "Bazel WORKSPACE not found"; exit 1; }
 ilog "Root workspace: $workspace"
 

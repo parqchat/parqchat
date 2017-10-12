@@ -3,9 +3,9 @@
 package(default_visibility = ["//visibility:public"])
 
 filegroup(
-  name = "js",
-  srcs = glob(["*.js"]),
+  name = "ajs_mocks",
+  srcs = ["ajs_mocks.js"],
   data = [
-    "//third_party/js/jsSHA"
+    "//webclient/main/js",
   ],
 )
