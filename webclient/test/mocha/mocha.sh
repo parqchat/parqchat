@@ -3,18 +3,31 @@
 
 which mocha > /dev/null || (echo "\nERROR: ** 'mocha' not found in PATH. Mocha installation required.\n"; exit 1)
 
-NODE_PATH=.
-for f in "$@"; do
-  if [ -f $f ]; then
-    NODE_PATH="$NODE_PATH:`dirname $f`"
+CMD="mocha "
+TEST_FILES=""
+NODE_PATH=""
+
+for arg in "$@"; do
+  if [ -f $arg ]; then
+    NODE_PATH="$NODE_PATH:`dirname $arg`"
+    TEST_FILES="$arg $TEST_FILES"
+  elif [ -d $arg ]; then
+    NODE_PATH="$NODE_PATH:$arg"
+  else
+    CMD="$CMD $arg"
   fi
 done
 
+LEAF_DIRS=`find . -type d -links 2 | tr '\n' ':'`
+NODE_PATH="$NODE_PATH:$LEAF_DIRS"
+NODE_PATH=`echo $NODE_PATH | tr ':' '\n' | sort -u | tr '\n' ':'`
+NODE_PATH=".$NODE_PATH"
 export NODE_PATH
 
-cmd="mocha $*"
+CMD="$CMD $TEST_FILES"
 
 echo "NODE_PATH=$NODE_PATH"
-echo "$cmd"
+echo "$CMD"
 
-$cmd
+$CMD
+

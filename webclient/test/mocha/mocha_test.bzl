@@ -11,8 +11,9 @@ def mocha_test(name, srcs, deps=[], ui="tdd"):
 
   native.sh_test(
     name = name,
-    srcs = ["mocha.sh"],
-    data = srcs,
-    args = ["-u", ui] + ["$(location %s)" % s for s in srcs],
-    deps = deps,
+    srcs = ["//webclient/test/mocha:mocha.sh"],
+    data = srcs + deps,
+    args = ["-u", ui]
+         + [Label(d).package for d in deps]
+	 + ["$(location %s)" % s for s in srcs],
   )
