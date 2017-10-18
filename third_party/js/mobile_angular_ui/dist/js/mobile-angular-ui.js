@@ -1,3 +1,5 @@
+var FastClick;
+
 ;(function () {
 	'use strict';
 
@@ -825,7 +827,7 @@
 		return new FastClick(layer, options);
 	};
 
-
+/*
 	if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
 
 		// AMD. Register as an anonymous module.
@@ -836,8 +838,11 @@
 		module.exports = FastClick.attach;
 		module.exports.FastClick = FastClick;
 	} else {
+*/
 		window.FastClick = FastClick;
-	}
+  //	}
+
+
 }());
 
 /**
@@ -2578,6 +2583,7 @@
 })();
 
 /*! Overthrow. An overflow:auto polyfill for responsive design. (c) 2012: Scott Jehl, Filament Group, Inc. http://filamentgroup.github.com/Overthrow/license.txt */
+
 (function( w, undefined ){
 	
 	var doc = w.document,
@@ -2670,15 +2676,18 @@
 	w.overthrow.support = nativeOverflow ? "native" : "none";
 		
 })( this );
-
 /*! Overthrow. An overflow:auto polyfill for responsive design. (c) 2012: Scott Jehl, Filament Group, Inc. http://filamentgroup.github.com/Overthrow/license.txt */
+
 (function( w, undefined ){
 	
 	// Auto-init
 	w.overthrow.set();
 
 }( this ));
+
 /*! Overthrow. An overflow:auto polyfill for responsive design. (c) 2012: Scott Jehl, Filament Group, Inc. http://filamentgroup.github.com/Overthrow/license.txt */
+
+
 (function( w, o, undefined ){
 
 	// o is overthrow reference from overthrow-polyfill.js
@@ -3293,11 +3302,13 @@
         };
       }],
       link: function(scope, element) {
+	/*
         if (overthrow.support !== 'native') {
           element.addClass('overthrow');
           overthrow.forget();
           overthrow.set();
         }
+*/
       }
     };
   });
