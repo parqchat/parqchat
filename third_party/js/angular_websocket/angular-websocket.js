@@ -1,7 +1,8 @@
-import angular from 'angular';
+//import angular from 'angular';
 
 var Socket;
 
+/*
 if (typeof window === 'undefined') {
   try {
     var ws = require('ws');
@@ -9,6 +10,7 @@ if (typeof window === 'undefined') {
     Socket = (ws.Client || ws.client || ws);
   } catch(e) {}
 }
+*/
 
 // Browser
 Socket = (Socket || window.WebSocket || window.MozWebSocket);
@@ -396,4 +398,4 @@ angular.module('ngWebSocket', [])
 
 angular.module('angular-websocket', ['ngWebSocket']);
 
-export default angular.module('ngWebSocket');
+//export default angular.module('ngWebSocket');
