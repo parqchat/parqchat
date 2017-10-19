@@ -1,0 +1,274 @@
+/* Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat */
+
+.home-body {
+  text-align: center;
+}
+
+.top {
+  background-image: url(park2.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 320px;
+  background-size: 100% 350px;
+  border-radius: 15px;
+  color: white;
+}
+
+.site {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 124px;
+}
+
+.home-form-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.home-url {
+  font-style: italic;
+}
+
+.home-newchat-box {
+  margin: 35px auto 5px auto;
+  max-width: 900px;
+  display: block;
+  background-color: rgba(0,0,0,0.5);
+  padding: 18px;
+  border-radius: 15px;
+}
+
+.bullets {
+  max-width: 900px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  align: center;
+}
+
+@media (min-width: 767px) {
+  .bullet {
+    display: inline-flex;
+  }
+}
+
+.bullet {
+  margin-top: 11px;
+  padding: 20px;
+  border-width: 1px;
+  border-style: double;
+  border-radius: 15px;
+}
+
+.bimg {
+  display: inline;
+}
+
+.bimg img {
+  display: inline;
+  width: 180px;
+  margin-right: 20px;
+}
+
+.btext h1 {
+  text-align: left;
+}
+
+.btext {
+  text-align: justify;
+  text-justify: inter-word;
+  display: inline-block;
+}
+
+/* --------  CHAT --------- */
+
+.svgicon {
+  width: 2.5em;
+  height: 2.5em;
+  margin-bottom: -18px;
+  margin-right: -12px;
+}
+
+.navbaricon {
+  fill: #007aff;
+}
+
+.showsvg {
+  display: inline;
+}
+
+.noshowsvg {
+  display: none;
+}
+
+.chatname {
+  /* margin-bottom: 51px; */
+  /* padding-bottom: 56px; */
+  /* margin-right: 12px; */
+  /* margin-top: -56px; */
+  /* border-top: 31px; */
+  display: inline-block;
+  /* margin-bottom: 50px; */
+  padding-right: 10px;
+  /* margin-top: -51px; */
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.statusicon {
+  display: inline-block;
+  /* padding-bottom: 10%; */
+  /* margin-bottom: -6px; */
+  /* width: 5em; */
+  /* margin-top: -18px; */
+  }
+
+.statusicon svg {
+  width: 1.9em;
+  height: 1.9em;
+}
+
+.plus-chat {
+      /* line-height: 70px; */
+      fill: white;
+      margin-top: 16px;
+      height: 2em;
+      width: 2em;
+      margin-right: -6px;
+}
+
+.chatchevron {
+  fill: #555;
+}
+
+.nick {
+      border: 1px;
+      border: gray;
+      border-style: solid;
+      border-width: thin;
+      width: 100%;
+}
+
+.green {
+      fill: green;
+      color: green;
+}
+
+.red {
+      fill: darkred;
+      color: darkred;
+}
+
+.chatInactive {
+      background: lightgray;
+}
+
+.chatActive {
+      background: white;
+}
+
+#qrcode {
+      width: 50%;
+      margin: auto;
+}
+
+.share_link {
+      padding-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-style: italic;
+}
+
+.parq-dialog {
+  max-width: 600px;
+  width: 95%;
+}
+
+.modal-text {
+      text-align: left;
+      padding: 15px;
+}
+
+.modal-radio {
+  /* float: left; */
+  display: block;
+}
+
+.radio-input {
+  font-weight: bold;
+  
+}
+
+.radio-text {
+  /* width: 80%; */
+  margin-left: 1.6em;
+  margin-bottom: 1em;
+  font-weight: normal;
+}
+
+.btn-menu {
+      text-align: left;
+}
+
+.output {
+  /* height: 75vh; */
+  width: 98%;
+  border: 1px;
+  border: black;
+  border-style: dotted;
+  border-radius: 7px;
+  padding: 6px;
+  padding-top: 7px;
+}
+
+.input {
+  /* height: 10vh; */
+  width: 98%;
+  border: blue;
+  border-style: dashed;
+  border-radius: 7px;
+  padding: 6px;
+  padding-top: 7px;
+  margin-top: 5px;
+}
+
+.message {
+      margin: 1px;
+      white-space:pre-wrap;
+}
+
+.ng-cloak {
+  display: none;
+}
+
+@media (
+      min-width: 992px) {
+  .navbar-brand-center {
+    position: absolute;
+    text-align: center;
+    padding: 10px 8px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (
+      max-width: 499px) {
+  .navText {
+    display: none;
+  }
+}
+
+@media (
+      min-width: 500px) {
+  .navText {
+    display: initial;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}

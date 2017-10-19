@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+<html lang="en">
+
+<head>
+ <title>parq.chat</title>
+ <!--base href="/"-->
+
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+
+
+ <link rel="stylesheet" href="style_dev.css">
+</head>
+
+<body class="home-body">
+
+<div class="top">
+  <div class="site">parq.chat&trade;</div>
+
+  <div class="home-newchat-box">
+    <div class="home-form-header">Create or join a chat</div>
+    <div>
+      <span class="home-url">https://parq.chat/</span>
+      <input id="chat" type="text" size="30" onkeypress="typed(event);"></input>
+    </div>
+  </div>
+</div>
+
+<div class="bullets">
+
+<div class="bullet">
+  <span class="bimg">
+    <img src="talk.png">
+  </span>
+  <span class="btext"> 
+    <h1>A talk in the parq&trade;</h1>
+    Enjoying company in a common public park is easy:
+    You simply have to go there.
+    Chatting in the parq&trade; is similarly easy: You give your parq.chat&trade; a name, and share a link. Anybody who knows the name and link can join. If you want to whisper in the parq&trade;, you can share a password so only your friends can join.
+  </span>
+</div>
+
+<div class="bullet">
+  <span class="bimg">
+    <img src="group.png">
+  </span>
+  <span class="btext"> 
+<h1>An open public parq&trade;<br>amongst walled gardens</h1>
+
+Today, most Internet services are "walled gardens". That is, once you are inside, everything looks great, however entrance comes at a cost. Furthermore, you will not be able to contact and interact with people who are not in the same walled garden, and they are not able to reach you.<br>
+<br>
+In contrast, parq.chat&trade; is a common public space where anybody can enter. Once you have an Internet connection, there is no bar or fence, no registration, no user information required. It works a bit like IRC in the early Internet days, but with a browser as the only required software, on mobile or desktop.
+  </span>
+</div>
+
+
+<div class="bullet">
+  <span class="bimg">
+    <img src="spy.png">
+  </span>
+  <span class="btext"> 
+
+    <h1>Privacy in the parq&trade;</h1>
+    parq.chat&trade; is built with user privacy as the first principle of every feature. This gives rise to a unique service, where the user entity does not exist on the server side. We know about an active session while a chat channel is ongoing. However, we don't have anybody's names, emails, nor passwords. It also means that in the unlikely event that our service is hacked, there is nothing to steal. We will never be in a situation where our user database is exposed on the black-market, simply because it does not exist.<br>
+    <!--
+    <br>
+    Privacy features are also implemented on the client, with multiple user options to control how data is stored locally. You can go full incognito without any trace, or store settings to come back to later. Either way, it is all locally storage, and you are always in full control of your data.
+-->
+  </span>
+</div>
+
+
+
+<div class="bullet">
+  <span class="bimg">
+    <img src="lock.png">
+  </span>
+  <span class="btext"> 
+    <h1>Security in the parq&trade;</h1>
+    Even with no data "at rest" on our servers, we have taken every step possible to secure the service. For the communication "in flight", we use the latest TLS web encryption standards. It means third-party or "man in the middle" eavesdroppers cannot see your messages or chat channels.<br>
+    <br>
+    In the future, we plan to offer end-to-end encryption, for an extra layer of security.
+  </span>
+</div>
+
+
+
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+function typed(event, src) {
+  event = event || window.event;
+  
+  if (event.keyCode === 13) {
+    submit();
+  }
+}
+
+function submit() {
+  var input = document.getElementById("chat");
+  var chat = input.value;
+
+  if (chat) {
+    var win = window.open(chat, "_blank");
+    win.focus();
+  }
+}
+</script>
+
+</html>

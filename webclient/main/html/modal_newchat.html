@@ -1,0 +1,21 @@
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+
+<div class="modal" ui-if="modal_newchat" ui-shared-state="modal_newchat">
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog parq-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">New chat name</h4>
+      </div>
+      <div class="modal-body">
+        <input class="nick"
+               ng-model="$parent.$parent.newchat"
+               automatic-focus></input>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="modal_newchat" class="btn btn-default">Cancel</button>
+        <button ui-turn-off="modal_newchat" ng-click="createNewChat()" class="btn btn-primary">Create / Join</button>
+      </div>
+    </div>
+  </div>
+</div>

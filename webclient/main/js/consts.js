@@ -59,7 +59,7 @@ var PWD_HASH_VARIANT;
 var Password;
 
 
-// util.js
+// common_util.js
 
 var util;
 

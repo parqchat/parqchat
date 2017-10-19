@@ -1,0 +1,56 @@
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+
+<div class="modal"
+	ui-if="modal_privacy"
+	ui-shared-state="modal_privacy">
+  <div class="modal-backdrop in"></div>
+  <div class="scrollable-content modal-dialog parq-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <button class="close" 
+                ui-turn-off="modal_privacy">&times;</button>
+        <h4 class="modal-title">Privacy</h4>
+      </div>
+
+      <div class="modal-body">
+
+		<h4>Storage Settings</h4>
+
+		<form name="privacyForm">
+		   <label class="modal-radio">
+		     <div class="radio-input"><input type="radio" ng-model="settings.model.storageType" value="none"> Ephemeral </div>
+		     <div class="radio-text">
+		       Nothing persists, everything is lost when you hit F5 or close the browser
+		       window. Useful for temporary one-off chats, or borrowed computers / phones.
+		       Also deletes all previously stored settings.
+		     </div>
+		   </label>
+
+		   <label class="modal-radio">
+			 <div class="radio-input"><input type="radio" ng-model="settings.model.storageType" value="session">Incognito</div>
+			 <div class="radio-text">
+			   Settings for nickname, chats and passwords is temporarily stored, and survives
+			   a page refresh. When you close the browser window or browser everything is lost.
+			   This goes well with the Incognito private mode of your browser.
+			 </div>
+		   </label>
+
+		   <label class="modal-radio">
+		     <div class="radio-input"><input type="radio" ng-model="settings.model.storageType" value="local"> Persist locally </div>
+		     <div class="radio-text">
+		       Stores nickname, chats names and passwords on the local browser and device.
+		       Survives a browser exit or machine restart. This is useful for your own personal devices.
+		     </div>
+		   </label>
+		</form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button ui-turn-off="modal_privacy" class="btn btn-default">Cancel</button>
+        <button ng-click="setPrivacy()" ui-turn-off="modal_privacy" class="btn btn-primary">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>

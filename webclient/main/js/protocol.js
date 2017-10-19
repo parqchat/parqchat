@@ -9,7 +9,7 @@ if(!(typeof require === 'undefined' || require == null)) {
   var console_log = require("console_log.js");
   require("history.js");
   require("password.js");
-  require("util.js");
+  require("common_util.js");
   require("consts.js");
 }
 //<------ DEV END

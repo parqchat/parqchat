@@ -51,8 +51,8 @@ mocha_test(
 )
 
 mocha_test(
-  name = "util_test",
-  srcs = ["util_test.js"],
+  name = "common_util_test",
+  srcs = ["common_util_test.js"],
   deps = [
     "//webclient/main/js",
   ],

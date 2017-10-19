@@ -2,7 +2,7 @@
 
 var assert = require('assert');
 
-require('util.js');
+require('common_util.js');
 
 suite('test_util', function() {
   

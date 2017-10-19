@@ -2,7 +2,7 @@
 
 package(default_visibility = ["//visibility:public"])
 
-filegroup(
-  name = "html",
-  srcs = glob(["*"]),
+java_library(
+  name = "util",
+  srcs = glob(["*.java"]),
 )

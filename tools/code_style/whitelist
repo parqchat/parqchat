@@ -1,4 +1,9 @@
 .gitignore
+.classpath
+.project
 README.md
 LICENSE
 whitelist
+.*\.png
+.*\.jpg
+.*\.ico

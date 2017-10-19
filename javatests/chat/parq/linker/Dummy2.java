@@ -2,6 +2,6 @@
 
 package chat.parq.linker;
 
-class Dummy {
+class Dummy2 {
 
 }

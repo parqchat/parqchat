@@ -3,7 +3,7 @@
 // DEV START  ----->
 // This will be removed during the release JS compile.
 if(!(typeof require === 'undefined' || require == null)) {
-  require("util.js");
+  require("common_util.js");
 }
 //<------ DEV END
 

@@ -1,0 +1,23 @@
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+
+<div class="modal"
+	ui-if="modal_share"
+	ui-shared-state="modal_share">
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog parq-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" 
+                ui-turn-off="modal_share">&times;</button>
+        <h4 class="modal-title">Share chat</h4>
+      </div>
+      <div class="modal-body">
+      	<div id="qrcode"></div>
+        <div class="share_link">https://parq.chat/{{ settings.tmp.currentChat.name }}</div>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="modal_share" class="btn btn-default">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

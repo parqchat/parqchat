@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+<html lang="en">
+
+ <head>
+   <title>parq.chat</title>
+   <base href="/">
+
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+   <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+
+   <!--link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /-->
+   
+   <!-- CSS DEV START -->
+   <link rel="stylesheet" href="third_party/js/mobile_angular_ui/dist/css/mobile-angular-ui-hover.css" />
+   <link rel="stylesheet" href="third_party/js/mobile_angular_ui/dist/css/mobile-angular-ui-base-wo_fontawesome.css" />
+   <link rel="stylesheet" href="third_party/js/mobile_angular_ui/dist/css/mobile-angular-ui-desktop.css" />
+   
+   <link rel="stylesheet" href="webclient/main/assets/style_dev.css">
+   <!-- CSS DEV END -->
+   <!-- CSS COMPILE 
+     <link rel="stylesheet" href="chat.css">
+        CSS COMPILE -->
+
+	 <!-- JS DEV START -->
+   <script src="third_party/js/angular/angular.js"></script>
+   <script src="third_party/js/angular/angular-route.js"></script>
+   <script src="third_party/js/angular/angular-cookies.js"></script>
+   <script src="third_party/js/angular_websocket/angular-websocket.js"></script>
+
+   <script src="third_party/js/mobile_angular_ui/dist/js/mobile-angular-ui.js"></script>
+   <script src="third_party/js/mobile_angular_ui/dist/js/mobile-angular-ui.gestures.js"></script>
+   
+   <script src="third_party/js/qrcode/qrcode.js"></script>
+   <script src="third_party/js/jsSHA/sha3.js"></script>
+   <!-- JS DEV END -->
+   
+   <!-- JS DEV START -->
+     <script src="webclient/main/js/console_log.js"></script>
+     <script src="webclient/main/js/consts.js"></script>
+     <script src="webclient/main/js/common_util.js"></script>
+     <script src="webclient/main/js/protocol.js"></script>
+     <script src="webclient/main/js/chat.js"></script>
+     <script src="webclient/main/js/history.js"></script>
+     <script src="webclient/main/js/password.js"></script>
+     <script src="webclient/main/js/main_angular.js"></script>
+     <script src="webclient/main/js/ajs_util.js"></script>
+     <script src="webclient/main/js/settings.js"></script>
+   <!-- JS DEV END -->
+
+   <!-- JS COMPILE
+     <script src="chat.js"></script>
+     JS COMPILE -->
+   
+
+ </head>
+  
+<body
+  ng-app="chatApp"
+  ng-controller="chatCtrl"
+  ng-strict-di
+  ui-prevent-touchmove-defaults>
+
+  <div class="sidebar sidebar-left">
+    <div ng-include="'sidebar.html'"></div>
+  </div>
+
+  <div class="app"
+       ui-swipe-right="Ui.turnOn('uiSidebarLeft')"
+       ui-swipe-left="Ui.turnOff('uiSidebarLeft')">
+
+    <!--- Top nav  -->
+    <div class="navbar navbar-app navbar-absolute-top">
+      <noscript>
+        <center><h1><b>parq.chat requires JavaScript to be enabled.<br>
+        Please allow JavaScript from https://parq.chat.</b></h1></center>
+      </noscript>
+
+      <div class="navbar-brand navbar-brand-center ng-cloak" ui-yield-to="title">
+        <span class="chatname">{{ settings.tmp.currentChat.name }}</span>
+        <i class="statusicon">
+          <i title="Please  set correct password" ng-class="'lock' == getChatIconClass(settings.tmp.currentChat) ? 'showsvg' : 'noshowsvg'"> <svg class="svgicon red" viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'><path d='M 5.8202659,6.2888167 H 10.749734 V 4.4402656 q 0,-1.0205527 -0.722092,-1.7426432 -0.722088,-0.7220895 -1.7426422,-0.7220895 -1.0205541,0 -1.7426429,0.7220895 -0.722091,0.7220905 -0.722091,1.7426432 v 1.8485511 z m 8.0103851,0.9242742 v 5.5456501 q 0,0.385115 -0.26958,0.654696 -0.26958,0.269581 -0.654696,0.269581 H 3.6636242 q -0.3851155,0 -0.6546951,-0.269581 Q 2.7393495,13.143856 2.7393495,12.758741 V 7.2130909 q 0,-0.3851151 0.2695796,-0.6546937 Q 3.2785087,6.2888167 3.6636242,6.2888167 H 3.9717165 V 4.4402656 q 0,-1.7715268 1.2708774,-3.0424039 1.2708797,-1.27087989 3.0424059,-1.27087989 1.7715262,0 3.0424062,1.27087989 1.270878,1.2708771 1.270878,3.0424039 v 1.8485511 h 0.308091 q 0.385116,0 0.654696,0.2695805 0.26958,0.2695786 0.26958,0.6546937 z'/></svg></i>
+          <i title="Password protected" ng-class="'unlock' == getChatIconClass(settings.tmp.currentChat) ? 'showsvg' : 'noshowsvg'"> <svg class="green svgicon" viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'><path d='m 16.361268,4.4199937 v 2.4850059 q 0,0.2523837 -0.184433,0.4368177 -0.184434,0.1844338 -0.436819,0.1844338 h -0.62125 q -0.252383,0 -0.436817,-0.1844338 -0.184434,-0.184434 -0.184434,-0.4368177 V 4.4199937 q 0,-1.0289475 -0.72803,-1.7569763 -0.728029,-0.7280292 -1.756976,-0.7280292 -1.028949,0 -1.756977,0.7280292 -0.7280293,0.7280288 -0.7280293,1.7569763 v 1.8637549 h 0.9318763 q 0.388282,0 0.660081,0.2717976 0.271797,0.2717977 0.271797,0.6600798 v 5.591263 q 0,0.388282 -0.271797,0.660079 -0.271799,0.271798 -0.660081,0.271798 H 1.1406076 q -0.38828225,0 -0.6600799,-0.271798 Q 0.20873045,13.195171 0.20873045,12.806889 V 7.215626 q 0,-0.3882821 0.27179725,-0.6600798 Q 0.75232535,6.2837486 1.1406076,6.2837486 H 7.6637484 V 4.4199937 q 0,-1.7958046 1.2764776,-3.0722823 1.276477,-1.27647769 3.072283,-1.27647769 1.795803,0 3.072282,1.27647769 1.276477,1.2764777 1.276477,3.0722823 z'/></svg></i>
+          <i title="Connected" ng-class="'check-circle' == getChatIconClass(settings.tmp.currentChat) ? 'showsvg' : 'noshowsvg'"> <svg class="svgicon green" viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'><path d='m 12.894251,5.4579094 q 0,-0.2501144 -0.160788,-0.4109022 L 11.920591,4.243068 q -0.169719,-0.1697204 -0.401969,-0.1697204 -0.232249,0 -0.40197,0.1697204 L 7.4721282,7.8786595 5.4533476,5.859879 Q 5.2836271,5.6901585 5.051378,5.6901585 q -0.232249,0 -0.4019695,0.1697205 L 3.8365366,6.6638181 Q 3.6757488,6.824606 3.6757488,7.0747204 q 0,0.2411818 0.1607878,0.4019696 l 3.233622,3.233622 q 0.1697205,0.16972 0.4019696,0.16972 0.2411817,0 0.4109022,-0.16972 L 12.733463,5.859879 q 0.160788,-0.1607878 0.160788,-0.4019696 z m 2.25103,1.4470905 q 0,1.8669255 -0.920064,3.4435401 -0.920063,1.576614 -2.496677,2.496677 -1.576614,0.920064 -3.44354,0.920064 -1.8669253,0 -3.4435395,-0.920064 Q 3.2648465,11.925154 2.3447827,10.34854 1.4247191,8.7719254 1.4247191,6.9049999 q 0,-1.8669253 0.9200636,-3.4435395 Q 3.2648465,1.8848464 4.8414605,0.96478264 6.4180747,0.04471893 8.285,0.04471893 q 1.866926,0 3.44354,0.92006371 1.576614,0.92006376 2.496677,2.49667776 0.920064,1.5766142 0.920064,3.4435395 z'/></svg></i>
+          <i title="Disconnected" ng-class="'circle-o-notch' == getChatIconClass(settings.tmp.currentChat) ? 'showsvg' : 'noshowsvg'"> <svg class="svgicon red" viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'><path d='m 15.154444,6.8692215 q 0,1.3993313 -0.544626,2.6714503 -0.544626,1.2721192 -1.462937,2.1904302 -0.918311,0.918312 -2.190431,1.462938 -1.2721186,0.544625 -2.67145,0.544625 -1.3993314,0 -2.6714504,-0.544625 Q 4.3414298,12.649414 3.4231188,11.731102 2.5048077,10.812791 1.9601816,9.5406718 1.4155555,8.2685528 1.4155555,6.8692215 q 0,-1.6935088 0.7712225,-3.1683717 Q 2.9580003,2.225986 4.2937259,1.2718967 5.6294507,0.31780675 7.2673042,0.07133409 V 1.8841039 Q 5.5101896,2.2418879 4.3533564,3.6412184 3.1965225,5.0405498 3.1965225,6.8692215 q 0,1.0335968 0.4054879,1.9757602 0.4054887,0.9421635 1.0852769,1.6219523 0.6797889,0.679788 1.6219523,1.085277 0.9421635,0.405488 1.9757604,0.405488 1.0335969,0 1.97576,-0.405488 0.942164,-0.405489 1.621953,-1.085277 0.679789,-0.6797888 1.085276,-1.6219523 0.405488,-0.9421634 0.405488,-1.9757602 0,-1.8286717 -1.156834,-3.2280031 Q 11.05981,2.2418879 9.3026958,1.8841039 V 0.07133409 Q 10.94055,0.31780675 12.276274,1.2718967 13.612,2.225986 14.383222,3.7008498 q 0.771222,1.4748629 0.771222,3.1683717 z'/></svg></i>
+        </i>
+      </div>
+
+      <!--- Left Chats sidebar  -->
+      <div class="btn-group pull-left ng-cloak">
+        <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+          <!--i class="fa fa-comment"></i-->
+          <i title="Switch or create chat"><svg class="svgicon navbaricon" viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'><path d='m 16.254042,5.7651991 q 0,1.5475584 -1.067282,2.8594263 -1.067283,1.3118698 -2.899452,2.0723066 -1.832167,0.76044 -4.0023086,0.76044 -0.6225815,0 -1.2896331,-0.07115 -1.7610164,1.556453 -4.0912501,2.152353 -0.435807,0.124517 -1.0139185,0.195667 -0.1511983,0.01778 -0.2712676,-0.08005 -0.1200693,-0.09783 -0.1556454,-0.257926 v -0.0089 q -0.026682,-0.03557 -0.00445,-0.106728 0.022235,-0.07115 0.017788,-0.08894 -0.00445,-0.01778 0.040023,-0.08449 l 0.053364,-0.08005 q 0,0 0.062258,-0.0756 0.062258,-0.0756 0.071152,-0.08005 0.062258,-0.07115 0.2757147,-0.306843 Q 2.1925955,12.32898 2.2859826,12.2267 2.3793699,12.124418 2.5616974,11.875386 2.7440247,11.626353 2.850753,11.42179 2.9574814,11.217228 3.0908916,10.897044 3.224302,10.576858 3.3221361,10.221098 1.9257748,9.429535 1.1208658,8.2644181 0.3159569,7.0993012 0.3159569,5.7651989 q 0,-1.1562235 0.6314755,-2.2101643 Q 1.578908,2.5010934 2.6461905,1.7362064 3.7134732,0.97132135 5.1898808,0.52217349 6.6662884,0.07302464 8.2850004,0.07302464 q 2.1701416,0 4.0023086,0.76043885 1.832168,0.76043981 2.899451,2.07230721 1.067282,1.3118682 1.067282,2.8594284 z'/></svg></i>
+          <span class="navText">Chats</span>
+        </div>
+      </div>
+
+      <!--- Right settings menu -->
+      <div class="btn-group pull-right ng-cloak">
+        <a ui-turn-on='menuDropdown' class="btn">
+          <span class="navText">Settings</span>
+          <i title="Settings and options"><svg class="svgicon navbaricon" viewBox='0 0 25 25' xmlns='http://www.w3.org/2000/svg'><path d='M 16.516258,2.1034312 V 0.73155497 q 0,-0.27866052 -0.203637,-0.48229934 -0.203638,-0.20363664 -0.4823,-0.20363664 H 0.73968019 q -0.27866152,0 -0.48229927,0.20363664 Q 0.0537421,0.45289445 0.0537421,0.73155497 V 2.1034312 q 0,0.2786626 0.20363882,0.4823015 0.20363775,0.2036377 0.48229927,0.2036377 H 15.830321 q 0.278662,0 0.4823,-0.2036377 0.203637,-0.2036389 0.203637,-0.4823015 z m 0,5.4875061 V 6.219061 q 0,-0.2786627 -0.203637,-0.4822993 -0.203638,-0.2036389 -0.4823,-0.2036389 H 0.73968019 q -0.27866152,0 -0.48229927,0.2036389 Q 0.0537421,5.9403983 0.0537421,6.219061 v 1.3718763 q 0,0.2786626 0.20363882,0.4823014 0.20363775,0.2036367 0.48229927,0.2036367 H 15.830321 q 0.278662,0 0.4823,-0.2036367 0.203637,-0.2036388 0.203637,-0.4823014 z m 0,5.4875057 v -1.371876 q 0,-0.278663 -0.203637,-0.482301 -0.203638,-0.203637 -0.4823,-0.203637 H 0.73968019 q -0.27866152,0 -0.48229927,0.203637 -0.20363882,0.203638 -0.20363882,0.482301 v 1.371876 q 0,0.278663 0.20363882,0.482299 0.20363775,0.203639 0.48229927,0.203639 H 15.830321 q 0.278662,0 0.4823,-0.203639 0.203637,-0.203636 0.203637,-0.482299 z'/></svg></i>
+          <!--i class="fa fa-bar-super-small"></i-->
+        </a>
+        <ul 
+          class="dropdown-menu"
+          ui-outer-click="Ui.turnOff('menuDropdown')"
+          ui-outer-click-if="Ui.active('menuDropdown')"
+          role="menu"
+          ui-show="menuDropdown" 
+          ui-state="menuDropdown"
+          ui-turn-off="menuDropdown">
+
+          <li><a ui-turn-on="modal_nick" class="btn-menu btn btn-default">Set Nickname</a></li>
+          <li><a ui-turn-on="modal_pass" class="btn-menu btn btn-default">Set Password</a></li>
+          <li><a ui-turn-on="modal_privacy" class="btn-menu btn btn-default">Privacy</a></li>
+          <li><a ui-turn-on="modal_share" class="btn-menu btn btn-default">Share</a></li>
+        </ul>
+      </div>
+      
+    </div>
+
+    <!-- App Body -->
+    <div class="app-body ng-cloak">
+      <div class="app-content" ng-style="appStyle">
+        <div class="section scrollable">
+          <!--innerHeight: {{ window.innerHeight }} {{window.screenY}} {{window.screenTop}} {{window.scrollY}} {{ resize }} -->
+          <div id="outputScroll"
+               class="scrollable-content output"
+               ng-class="getChatActiveClass(settings.tmp.currentChat)">
+            <div>
+              <span
+                ng-repeat="(nick, value) in settings.tmp.currentChat.seenPeers"
+                ng-style="value.style">
+                  {{nick}}
+              </span>
+            </div>
+            <section>
+              <div ng-repeat="msg in settings.tmp.currentChat.messages track by $index" >
+              <!--  TODO: remove msg.msg after next release -->
+                <div class="message ng-cloak">{{ msg.nick ? msg.nick + ": " : "" }}{{ msg.txt ? msg.txt : msg.msg }}</div>
+               </div>
+            </section>
+          </div>
+
+          <div class="scrollable-footer">
+            <textarea
+              id="input"
+              class="input"
+              ng-readonly="!getChatActive(settings.tmp.currentChat)"
+              ng-class="getChatActiveClass(settings.tmp.currentChat)"
+              ng-model="input"
+              ng-keypress="typed($event)"
+              ng-focus="inputFocus($event)"
+              ng-blur="inputBlur($event)">
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <ng-view></ng-view>
+  </div> <!-- .app -->
+
+  <div ng-include="'modal_nick.html'"></div>
+  <div ng-include="'modal_pass.html'"></div>
+  <div ng-include="'modal_share.html'"></div>
+  <div ng-include="'modal_privacy.html'"></div>
+  <div ng-include="'modal_newchat.html'"></div>
+
+  <div ui-yield-to="modals"></div>
+
+
+</body>
+</html>

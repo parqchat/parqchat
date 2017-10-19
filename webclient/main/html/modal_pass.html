@@ -1,0 +1,35 @@
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+
+<div class="modal" ui-if="modal_pass" ui-shared-state="modal_pass">
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog parq-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" 
+                ui-turn-off="modal_pass">&times;</button>
+        <h4 class="modal-title">Set the password for this chat</h4>
+      </div>
+      <div class="modal-body">
+        <input class="nick"
+               ng-model="settings.tmp.currentChat.password"
+               ng-enter="setPassword()"
+               automatic-focus>
+        </input>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="modal_pass" class="btn btn-default">Cancel</button>
+        <button ng-click="setPassword()" ui-turn-off="modal_pass" class="btn btn-primary" >Apply</button>
+      </div>
+      
+      <div class="modal-text">
+	      The password is shared by all members of this chat channel.
+	      Give it to your friends so they can access the same chat.
+	      <b>It is not your personal password.</b><br>
+	      <br>
+	      Setting a password will allow late-comers to recall the history of previous messages.
+	      The messages are stored in your client. Nothing is stored on the server. 
+      </div>
+      
+    </div>
+  </div>
+</div>

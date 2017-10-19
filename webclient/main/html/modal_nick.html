@@ -1,0 +1,30 @@
+<!-- Copyright parq.chat(TM). Licensed under AGPL 3. See https://github.com/parqchat/parqchat -->
+
+<div class="modal" ui-if="modal_nick" ui-shared-state="modal_nick">
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog parq-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Set your nick name</h4>
+      </div>
+      <div class="modal-body">
+        <input class="nick" 
+        	   ng-model="settings.model.nick"
+        	   ng-enter="setNick()"
+        	   automatic-focus>
+        </input>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="modal_nick" class="btn btn-default">Cancel</button>
+        <button ui-turn-off="modal_nick" ng-click="setNick()" class="btn btn-primary">Apply</button>
+      </div>
+
+      <div class="modal-text">
+	      A nickname is for convenience only. It will appear in front of your messages.
+	      It is not a unique user name, so many people can have the same nickname.
+	      It is not stored on the server.
+      </div>
+      
+    </div>
+  </div>
+</div>
